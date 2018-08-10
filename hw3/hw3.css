@@ -1,0 +1,322 @@
+@charset "UTF-8";
+/* CSS Document 
+* Chenyang Zhang CSCI 571 homework3
+*/
+
+/******************************************** Reset ************************************************/
+html,body,div,h1,h2,h3,h4,h5,h6,p,a,img,ul,li{
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+ol, ul {
+	list-style: none;
+}
+/****************************************** Global Setting ******************************************/
+body{
+	background-image:url("images/bg.png");
+	background-repeat:repeat;
+    font-family: 'Trebuchet MS', Trebuchet, 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    line-height: 22px;
+	font-size:14px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+}
+
+/* Headings */
+h2 {font-size: 22px} 
+h3 {font-size: 20px} 
+h4 {font-size: 18px} 
+h5 {font-size: 16px} 
+h6 {font-size: 14px}
+ 
+h2, h3, h4, h5, h6 {
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 13px;
+}
+
+a:link, a:visited {
+  color: #C74350;
+  padding: 0 1px;
+  text-decoration: underline;
+}
+
+a:hover, a:active{
+	background-color: #C74350;
+  	color: #fff;
+  	text-decoration: none;
+  	text-shadow: 1px 1px 1px #333;
+}
+
+div{
+	display:block;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+/****************************************** Layout Setting ******************************************/
+#top, #menu, #article, #message, #links, #magazine, #footer{clear: both; margin: 0 auto; width: 800px;}
+
+/* Top Section */
+#top{ margin-top:60px; margin-bottom: 40px;}
+
+#top h1{
+	font-size: 57px; font-weight:bold;
+}
+#top h1 strong{
+	font-size: 16px; font-weight: normal;
+}
+
+/* Nav Section */
+#menu{ background: #000305;
+    font-size: 18px;
+    height: 40px;
+    line-height: 30px;
+	margin:20px auto;
+    padding: 0;
+    text-align: center;
+    width: 800px;}
+
+.rRec{
+	border-radius: 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+}
+
+#menu ul{
+	list-style: none; margin: 0 auto; width: 720px;
+}
+
+#menu ul li{
+	float: left; display: inline; margin: 0;
+}
+
+#menu a:link, #menu a:visited {
+    color: #fff;
+    display: inline-block;
+    height: 30px;
+    padding: 5px 1.5em;
+    text-decoration: none;
+}
+
+#menu a:hover, #menu a:active,
+#menu .active a:link, #menu .active a:visited {
+    background: #C74451;
+    color: #fff;
+    text-shadow: none;
+}
+  
+#menu li:first-child a {
+    border-top-left-radius: 5px;
+    -moz-border-radius-topleft: 5px;
+    -webkit-border-top-left-radius: 5px;
+    
+    border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+}
+
+/* Featured Article Section */
+
+#article{
+	background: #fff; 
+	margin-bottom: 40px;
+  	overflow: hidden;
+  	padding: 20px;
+  	width: 800px;
+}
+  
+#content{
+	width:440px;
+	height:160px;
+	padding:20px;
+	float:left;
+	display:inline;
+}
+
+
+#sm-logo{
+	width:320px;
+	height:160px;
+	float:left;
+	display:inline;
+	text-align:center;
+	vertical-align:middle;
+}
+
+#sm-logo img{
+	border: 2px solid #eee;
+}
+
+.img-container {
+  text-align:center; 
+  font: 0/0 a;      
+}
+
+.img-container:before {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.img-container img {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#content h2{
+	color: #C74451; font-size: 22px; margin-bottom: 14px;
+}
+#content h3{
+	font-size: 18px; margin-bottom: 14px;
+}
+
+/* Message Section */
+#message{
+	background:#fff; 
+	margin-bottom:40px;
+	height:380px;
+	padding:20px 20px;
+}
+
+.messageDiv{
+	width: 725px;
+	border-bottom: 1px solid #eee;
+	padding: 20px 0;
+}
+
+li:last-child .messageDiv, #message > .message {border: 0; margin: 0;}
+#message > .messageDiv {padding: 15px 0;}
+
+.messageInfo {margin-bottom: 30px;}
+.author {display: block;}
+
+#messageList {list-style: none; margin: 0;}
+#messageList .messageDiv {padding-left: 200px; padding-top: 50px; position: relative;}
+#messageList .messageInfo {
+    left: 10px;
+    position: absolute;
+    top: 20px;
+    width: 190px;
+}
+
+#messageList .messageDiv u, #messageList .messageDiv .title{
+	color:#C74451;
+}
+#messageList .messageDiv:hover {
+  background: #C64350;
+  color: #fff;
+}
+#messageList .messageDiv:hover u, #messageList .messageDiv:hover .title{
+  color: #F6CF74;
+  text-shadow: 1px 1px 1px #333;
+}
+
+/* Other Links Section */
+#links{ margin-bottom: 40px; overflow: hidden;}
+
+#links h2 {
+	line-height:30px;
+  	color: #C74350;
+  	font-size: 20px;
+	font-weight:200%;
+	margin: 0;
+}
+ 
+#links a:link, #links a:visited {
+  color: #555;
+  display: block;
+  text-decoration: none;
+  line-height:30px;
+}
+
+#links a:hover{
+	color:#fff;
+}
+
+#blogroll{
+	width:450px;
+	height:110px;
+	float:left;
+	display:inline;
+}
+
+#social{
+	width:200px;
+	height:110px;
+	float:right;
+	display:inline;
+}
+
+#blogroll ul {
+    -webkit-column-count: 2; 
+    -moz-column-count: 2;
+    column-count: 2;
+	padding-left:40px;
+}
+
+
+#social ul{
+	padding-left:40px;
+}
+
+#social ul li{
+	border-bottom:1px solid #fff;
+}
+
+#social ul li a{
+	background-repeat: no-repeat; 
+	background-position:left; 
+	padding-left:20px;
+}
+
+#social li:last-child, #social li:last-child a {border: 0}
+
+#facebook{ background-image:url("images/facebook.png");}
+#twitter{ background-image:url("images/twitter.png");}
+
+/* Magazine Info Section */
+#magazine{
+	background: #fff;
+	height:100px;
+  	font-style: normal;
+  	margin-bottom: 32px;
+  	overflow: hidden;
+  	padding: 20px;
+  	text-align: left;
+}
+
+#magazine .name{
+	float:left;
+	width:165px;
+}
+
+#magazine .name strong{
+	color: #C64350;
+	display: block;
+	font-size: 20px;
+	margin-bottom: 2px;
+}
+	
+
+#magazine img{
+	float:left;
+	margin:5px 20px;
+}
+
+#magazine .details{
+	float:right;
+	width:500px;
+}
+
+/* Footer Section */
+#footer{ padding-bottom:40px; text-align:right;}
+#footer p strong{color: #C64350;}
+

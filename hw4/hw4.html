@@ -1,0 +1,117 @@
+<!-- Chenyang Zhang CSCI 571 homework4 2016 FALL USC -->
+<!DOCTYPE html>
+<html>
+	<head>
+    	<meta charset="UTF-8">
+		<title>Homework 4</title>
+		<script>
+			function loadXML(url) {
+				var xmlhttp;
+				if (window.XMLHttpRequest) {
+					// code for IE7+, Firefox, Chrome, Opera, Safari
+					xmlhttp = new XMLHttpRequest();
+				} else {
+					// code for IE6, IE5
+					xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+				}
+				xmlhttp.onreadystatechange = function() {
+    				if (this.readyState == 4 && this.status == 404) {
+    					alert("Error: XML File Not Found!");
+    				}
+				};
+				xmlhttp.open("GET", url, false);
+				xmlhttp.send();
+				return xmlhttp.responseXML;
+			}
+
+			function createHTML(xmlDoc) {
+				var html = "<html><head><title>Online Newspaper Listings</title>"
+				html = "<style>table tr td {height: 150px;}</style></head><body>";
+				html += "<table border='2' width='855px'>";
+				//output the header row;
+				var headers = xmlDoc.getElementsByTagName("Data");
+				html += "<tr>";
+				for ( i = 0; i < headers.length; i++) {
+					html += "<th>" + headers[i].innerHTML + "</th>";
+				}
+				html += "</tr>";
+				//output the table body information;
+				var newspapers = xmlDoc.getElementsByTagName("Row");
+				if(newspapers.length < 1){
+					return "";
+				}
+				html += "<tbody>";
+				for ( i = 0; i < newspapers.length; i++) {
+					html += "<tr>";
+					for ( j = 0; j < newspapers[i].childNodes.length; j++) {
+						if (newspapers[i].childNodes[j].nodeName == "Slot") {
+							html += "<td width='65px'>" + newspapers[i].childNodes[j].innerHTML + "</td>";
+						}
+						if (newspapers[i].childNodes[j].nodeName == "Newspaper") {
+							html += "<td width='160px'>" + newspapers[i].childNodes[j].innerHTML + "</td>";
+						}
+						if (newspapers[i].childNodes[j].nodeName == "Location") {
+							html += "<td width='125px'><ul>";
+							for ( k = 0; k < newspapers[i].childNodes[j].childNodes.length; k++) {
+								if (newspapers[i].childNodes[j].childNodes[k].nodeName == "City" || newspapers[i].childNodes[j].childNodes[k].nodeName == "State") {
+									var htmlstring = newspapers[i].childNodes[j].childNodes[k].innerHTML;
+									htmlstring = (htmlstring.trim) ? htmlstring.trim() : htmlstring.replace(/^\s+/,'');
+									if(htmlstring != "") {
+										html += "<li>" + newspapers[i].childNodes[j].childNodes[k].innerHTML + "</li>";
+									}
+								}
+							}
+							html += "</ul></td>";
+						}
+						if (newspapers[i].childNodes[j].nodeName == "HomePage") {
+							html += "<td width='200px'><a href='" + newspapers[i].childNodes[j].innerHTML + "'>" + newspapers[i].childNodes[j].innerHTML + "</a></td>";
+						}
+						if (newspapers[i].childNodes[j].nodeName == "Logo") {
+							html += "<td width='315px'><img style = 'display:block;' src='" + newspapers[i].childNodes[j].innerHTML + "' width='100%' height='100%'></td>";
+						}
+					}
+					html += "</tr>";
+				}
+				html += "</tbody></table><noscript></body></html>";
+				return html
+			}
+
+			function displayTable(url) {
+				if (url == "") {
+					alert("Error: URL Is Empty!");
+				} else {
+					xmlDoc = loadXML(url);
+					if (xmlDoc == null) {
+						alert("Error: Fail to Load XML File!");
+					} else {
+						if (xmlDoc.documentElement.nodeName == "parsererror") {
+							alert("Error: XML Parser Error!");
+						} else {
+								var html = createHTML(xmlDoc);
+								if(html == "")
+									alert("Error: Newspaper List Is Empty!");
+								else{
+									var xmlWin = window.open("", "HW4", "resizable=yes, scrollbars=yes, directories=yes, width=1000, height=600");
+									xmlWin.document.write(html);
+								}
+						}
+					}
+				}
+			}
+
+		</script>
+	</head>
+
+	<body>
+		<h3 align = "center" style = "margin-top: 100px;"id = "head">Enter URL for Newspaper List XML File</h3>
+        <div align = "center" id = "xmlInput">
+            <form name = "XMLForm" method="post">
+                <input type="text" name="inputURL" value="" size="30"/>
+                <br />
+                <br />
+                <input type="button" name="submit" value="Submit Query" onclick="displayTable(this.form.inputURL.value)"/>
+            </form>
+        </div>
+    <noscript>
+	</body>
+</html>
